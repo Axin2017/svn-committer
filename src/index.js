@@ -6,7 +6,6 @@ const inquirer = require('inquirer')
 const chalk = require('chalk')
 const program = require('commander')
 
-const cwd = require('process').cwd()
 
 /**
  * 拷贝from文件夹内容到to文件夹
@@ -118,8 +117,9 @@ function validateConfig(config) {
 }
 
 function getConfig() {
-  const configFilePath = path.resolve(cwd, './.svncommitter.config.js')
+  const configFilePath = path.resolve(process.cwd(),'.svncommitter.config.js')
   if (fs.existsSync(configFilePath)) {
+    console.log(configFilePath)
     return require(configFilePath)
   } else {
     console.log(chalk.red('缺少配置文件 .svncommitter.config.js'))
@@ -178,3 +178,5 @@ program.command('commit').action(function (env, options) {
   })
 
 })
+
+program.parse(process.argv)
