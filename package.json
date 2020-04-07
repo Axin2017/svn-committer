@@ -1,0 +1,36 @@
+{
+  "name": "svn-commiter",
+  "version": "1.0.0",
+  "description": "a svn commit tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [
+    "svn",
+    "commiter",
+    "tanxin"
+  ],
+  "bin": {
+    "svn-committer": "./lib/svn-committer.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Axin2017/svn-committer.git"
+  },
+  "homepage": "https://github.com/Axin2017/svn-committer#readme",
+  "author": "838524739@qq.com",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^5.0.0",
+    "inquirer": "^7.1.0",
+    "node-cmd": "^3.0.0",
+    "ora": "^4.0.3"
+  },
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}
