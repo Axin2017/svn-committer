@@ -2,6 +2,8 @@
 
 ### .svncommit.config.js
 
+**注意**：目前钩子函数不支持异步函数
+
 ```
 const path = require('path')
 const fs = require('fs')
