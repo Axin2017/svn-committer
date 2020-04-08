@@ -5,9 +5,6 @@
 **注意**：目前钩子函数不支持异步函数
 
 ```
-const path = require('path')
-const fs = require('fs')
-
 module.exports = {
   from: 'E:/jsproject/chinadci/tanxin-test1',
   to: 'E:/jsproject/chinadci/tanxin-test',

@@ -1,23 +1,8 @@
 .DS_Store
 node_modules
-dist
-src
 public
 build
 package-lock.json
-
-# config files
-.browserslistrc
-.eslintrc.js
-babel.config.js
-postcss.config.js
-vue.config.js
-.editorconfig
-webpack.config.js
-
-# local env files
-.env
-.env.*
 
 # Log files
 npm-debug.log*
