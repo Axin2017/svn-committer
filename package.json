@@ -29,7 +29,7 @@
     "inquirer": "^7.1.0",
     "node-cmd": "^3.0.0",
     "ora": "^4.0.3",
-    "tanxin-node-utils": "^1.0.1"
+    "tanxin-node-utils": "^1.0.3"
   },
   "devDependencies": {}
 }
