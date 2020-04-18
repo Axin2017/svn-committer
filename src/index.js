@@ -6,31 +6,7 @@ const ora = require('ora')
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 const program = require('commander')
-
-
-/**
- * 拷贝from文件夹内容到to文件夹
- *
- * @param {String} from 源文件夹
- * @param {String} to 目标文件夹
- * @param {Array} ignore 忽略的文件或者文件夹正则
- */
-function copyContentFromDir(from, to, ignore) {
-  const dirs = fs.readdirSync(from)
-  dirs.forEach(function (item) {
-    const itemPath = path.join(from, item)
-    const isIgnore = itemPath.indexOf('.svn') >= 0 || ignore.some((i) => i.test(itemPath))
-    if (isIgnore) {
-      return
-    }
-    const temp = fs.statSync(itemPath)
-    if (temp.isFile()) { // 是文件
-      fs.copyFileSync(itemPath, path.join(to, item))
-    } else if (temp.isDirectory()) { // 是目录
-      copyContentFromDir(itemPath, path.join(to, item))
-    }
-  })
-}
+const { copyDir } = require('tanxin-node-utils/package/file/copyDir')
 
 /**
  * 删除svn目录里面的源代码
@@ -142,7 +118,9 @@ function publish(config, desc) {
       callHook('afterDelete', config)
 
       callHook('beforeCopy', config)
-      copyContentFromDir(config.from, config.to, config.ignore)
+      copyDir(config.from, config.to, (from) => {
+        return config.ignore.some((i) => i.test(from))
+      })
       callHook('afterCopy', config)
 
       callHook('beforeCommit', config)

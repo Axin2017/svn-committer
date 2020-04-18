@@ -1,6 +1,6 @@
 {
   "name": "svn-committer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a svn commit tool",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,8 @@
     "commander": "^5.0.0",
     "inquirer": "^7.1.0",
     "node-cmd": "^3.0.0",
-    "ora": "^4.0.3"
+    "ora": "^4.0.3",
+    "tanxin-node-utils": "^1.0.1"
   },
   "devDependencies": {}
 }
