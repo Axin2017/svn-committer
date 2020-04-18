@@ -6,7 +6,7 @@ const ora = require('ora')
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 const program = require('commander')
-const { copyDir } = require('tanxin-node-utils/package/file/copyDir')
+const { copyDirSync } = require('tanxin-node-utils/package/file/copyDir')
 
 /**
  * 删除svn目录里面的源代码
@@ -118,7 +118,7 @@ function publish(config, desc) {
       callHook('afterDelete', config)
 
       callHook('beforeCopy', config)
-      copyDir(config.from, config.to, (from) => {
+      copyDirSync(config.from, config.to, (from) => {
         return config.ignore.some((i) => i.test(from))
       })
       callHook('afterCopy', config)

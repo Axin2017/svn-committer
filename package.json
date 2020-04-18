@@ -1,6 +1,6 @@
 {
   "name": "svn-committer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "a svn commit tool",
   "main": "index.js",
   "scripts": {
