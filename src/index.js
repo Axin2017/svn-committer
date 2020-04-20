@@ -8,6 +8,8 @@ const chalk = require('chalk')
 const program = require('commander')
 const { copyDirSync } = require('tanxin-node-utils/package/file/copyDir')
 
+const DEFAULT_LIMIT_LENGTH = 5
+
 /**
  * 删除svn目录里面的源代码
  *
@@ -102,7 +104,7 @@ function validateConfig(config) {
  */
 function validateComments(config, comments) {
   let commentsLengthLimit = config.commentsLengthLimit
-  commentsLengthLimit = commentsLengthLimit || 5
+  commentsLengthLimit = commentsLengthLimit || DEFAULT_LIMIT_LENGTH
 
   const isCommentsValidated = comments && comments.length >= commentsLengthLimit
 
@@ -158,7 +160,7 @@ program.command('commit').action(function (env, options) {
   const { comments } = program
   const isCommentsValidated = validateComments(config, comments)
   if (!isCommentsValidated) {
-    console.log(chalk.red('必须提交说明，提交说明的长度应不少于' + config.commentsLengthLimit + '  -c/--comments [your comments]'))
+    console.log(chalk.red('必须提交说明，提交说明的长度应不少于' + config.commentsLengthLimit || DEFAULT_LIMIT_LENGTH + '  -c/--comments [your comments]'))
     return
   }
 
