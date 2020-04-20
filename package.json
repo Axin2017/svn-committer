@@ -1,12 +1,12 @@
 {
   "name": "svn-committer",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "a svn commit tool",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "debug": "node --inspect-brk ./node_modules/webpack/bin/webpack.js --inline --progress"
+    "commit": "node src/index.js commit",
+    "c": "node src/index.js"
   },
   "keywords": [
     "svn",

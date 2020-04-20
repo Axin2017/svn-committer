@@ -93,6 +93,22 @@ function validateConfig(config) {
   }
 }
 
+
+/**
+ * 验证提交说明的合法性
+ *
+ * @param {Object} config
+ * @param {String} comments
+ */
+function validateComments(config, comments) {
+  let commentsLengthLimit = config.commentsLengthLimit
+  commentsLengthLimit = commentsLengthLimit || 5
+
+  const isCommentsValidated = comments && comments.length >= commentsLengthLimit
+
+  return isCommentsValidated
+}
+
 function getConfig() {
   const configFilePath = path.resolve(process.cwd(),'.svncommitter.config.js')
   if (fs.existsSync(configFilePath)) {
@@ -135,27 +151,23 @@ program.command('commit').action(function (env, options) {
 
   const config = getConfig()
   if (!config) {
-    return;
+    return
   }
   validateConfig(config)
+
+  const { comments } = program
+  const isCommentsValidated = validateComments(config, comments)
+  if (!isCommentsValidated) {
+    console.log(chalk.red('必须提交说明，提交说明的长度应不少于' + config.commentsLengthLimit + '  -c/--comments [your comments]'))
+    return
+  }
 
   if (!fs.existsSync(config.to)) {
     fs.mkdirSync(config.to)
   }
 
-  inquirer.prompt([
-    {
-      name: 'desc',
-      type: 'String',
-      message: '请输入你此次发布的描述：（不少于5个字）',
-      validate(val) {
-        return val.length >= 5
-      }
-    }
-  ]).then(answers => {
-    publish(config, answers.desc)
-  })
-
+  publish(config, comments)
 })
+program.option("-c --comments <comments>", "提交说明")
 
 program.parse(process.argv)
